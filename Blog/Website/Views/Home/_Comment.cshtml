@@ -1,0 +1,12 @@
+﻿@model Blog.CommentViewModel
+
+<li>
+    <div class="comment">
+        <div class="comment-meta">
+            <div class="comment-timestamp">@Model.CreatedOn.ToShortDateString() @Model.CreatedOn.ToShortTimeString()</div>
+        </div>
+        <div class="comment-body">
+            <p>@Model.Content</p>
+        </div>
+    </div>
+</li>

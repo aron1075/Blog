@@ -1,0 +1,5 @@
+﻿1. set getdate() as code first.
+
+2. get short post for index page.
+
+3. upload file stream from browser.

@@ -1,0 +1,28 @@
+﻿@model Blog.SignInViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body class="account-bg">
+    <div class="account-wrapper">
+        <div class="account-body">
+            @using (Html.BeginForm("LogIn", "Account", new { returnUrl = ViewBag.ReturnUrl, @class = "col-md-12 center-block" })) {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                </div>
+                <div class="form-group">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                </div>                        
+                @Html.ValidationSummary(false, string.Empty)
+                <div class="form-action">
+                    <button class="btn btn-primary btn-block btn-lg" type="submit">Log In</button>
+                </div>
+            }  
+        </div> <!-- /.account-wrapper -->
+    </div>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+</body>
+

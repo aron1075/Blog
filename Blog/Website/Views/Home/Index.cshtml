@@ -1,0 +1,14 @@
+﻿@model Blog.PostsViewModel 
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    @Html.ActionLink("Add Post", "AddPost", "Home", new { @class = "btn btn-primary" })
+
+   @foreach (var post in Model.Posts) {
+       @Html.Partial("_Post", post)
+   }
+
+</body>

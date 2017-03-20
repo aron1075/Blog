@@ -1,0 +1,28 @@
+﻿@model Blog.PostViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="post-main">
+    <h3 class="post-title">@Model.Title</h3>
+    <h4 class="post-meta">Published on @Model.CreateOn.ToShortDateString() @Model.CreateOn.ToShortTimeString()</h4>
+    @if (Model.FileStream != null) {
+        <img src="../../global/img/blog/blog-post-3.jpg" class="post-img img-responsive" alt="">
+    }
+    <div class="post-content">
+        <p>@Model.Content</p>
+    </div>
+
+    <br class="xs-30">
+
+    <a id="comments"></a>
+    <div class="heading-block"><h3>Comments</h3></div>
+    <ol class="comment-list">
+        @foreach (var comment in Model.Comments) {
+            @Html.Partial("_Comment", comment);
+        }
+    </ol>
+
+        @Html.ActionLink("Add Comment", "AddComment", new { aPostId = Model.PostId }, new { @class = "btn btn-primary" })
+</div>
