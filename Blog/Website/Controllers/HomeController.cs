@@ -36,8 +36,8 @@ public class HomeController : Controller {
                 postModel.Comments.Add(new CommentViewModel() { Content = comment.Content, CreatedOn = comment.CreatedOn });
             }
 
-            if (post.PhotoAwsKey != null) {
-                postModel.FileStream = mAwsService.GetFile(post.PhotoAwsKey);
+            if (post.FileKey != null) {
+                postModel.FileName = post.FileKey;
             }
             model.Posts.Add(postModel);
         }
@@ -47,6 +47,8 @@ public class HomeController : Controller {
 
     [AllowAnonymous]
     public ActionResult ViewPost(int aPostId) {
+        TempData["PostId"] = aPostId;
+
         var post = mPostService.GetPost(aPostId);
         var model = new PostViewModel() {
             PostId = post.PostId,
@@ -59,8 +61,8 @@ public class HomeController : Controller {
             model.Comments.Add(new CommentViewModel() { Content = comment.Content, CreatedOn = comment.CreatedOn });
         }
 
-        if (post.PhotoAwsKey != null) {
-            model.FileStream = mAwsService.GetFile(post.PhotoAwsKey);
+        if (post.FileKey != null) {
+            model.FileName = post.FileKey;
         }
 
         return View(model);
@@ -80,16 +82,10 @@ public class HomeController : Controller {
                 Content = aModel.Content,
                 AccountId = account.AccountId
             };
-
-            post = mPostService.AddPost(post, aModel.FileStream);
+    
+            post = mPostService.AddPost(post, aModel.Image);
             return RedirectToAction("Index", "Home");
         }
-        return View();
-    }
-
-    [Authorize]
-    public ActionResult AddComment(int aPostId) {
-        TempData["PostId"] = aPostId;
         return View();
     }
 
@@ -105,15 +101,6 @@ public class HomeController : Controller {
             return RedirectToAction("ViewPost", "Home", new { aPostId = comment.PostId });
         }
         return View();
-    }
-
-    [HttpPost]
-    [ChildActionOnly]
-    public ActionResult UploadFile(HttpPostedFile aFile) {
-        if (aFile != null) {
-            var fileStream = aFile.InputStream;
-        }
-        return null;
     }
 
 }

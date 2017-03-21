@@ -19,7 +19,7 @@ public class Post {
 
     public string Content { get; set; }
 
-    public string PhotoAwsKey { get; set; }
+    public string FileKey { get; set; }
 
     public DateTime CreatedOn { get; set; }
 

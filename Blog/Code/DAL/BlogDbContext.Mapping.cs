@@ -24,7 +24,7 @@ public partial class BlogDbContext {
 
         aModel.Entity<Post>().Property(e => e.Title).HasMaxLength(50).IsRequired();
         aModel.Entity<Post>().Property(e => e.Content).IsRequired();
-        aModel.Entity<Post>().Property(e => e.PhotoAwsKey).HasMaxLength(50);
+        aModel.Entity<Post>().Property(e => e.FileKey).HasMaxLength(50);
 
         #endregion
 

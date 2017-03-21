@@ -27,7 +27,10 @@ public class PostViewModel {
     [MaxLength(50)]
     public string PhotoAwsKey { get; set; }
 
-    public Stream FileStream { get; set; }
+    [DataType(DataType.Upload)]
+    public HttpPostedFileBase Image { get; set; }
+
+    public string FileName { get; set; }
 
     public List<CommentViewModel> Comments { get; set; }
 

@@ -10,7 +10,7 @@ public partial class BlogDbContext : DbContext {
     public DbSet<Comment> Comment { get; set; }  
   
     public BlogDbContext() : base("BlogContext") {
-        //Database.SetInitializer(new DropCreateDatabaseAlways<BlogDbContext>());
+        Database.SetInitializer(new CreateDatabaseIfNotExists<BlogDbContext>());
         Configuration.AutoDetectChangesEnabled = true;
         Configuration.LazyLoadingEnabled = false;		
 	}

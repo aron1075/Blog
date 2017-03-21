@@ -1,12 +1,11 @@
 ﻿using System.IO;
+using System.Web;
 
 namespace Code {
 
 public interface IAwsService {
 
-    string UploadFile(Stream aFileStream);
-
-    Stream GetFile(string aKey);
+    string UploadFile(HttpPostedFileBase aFile);
 
 }
 

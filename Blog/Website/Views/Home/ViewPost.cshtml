@@ -7,8 +7,8 @@
 <div class="post-main">
     <h3 class="post-title">@Model.Title</h3>
     <h4 class="post-meta">Published on @Model.CreateOn.ToShortDateString() @Model.CreateOn.ToShortTimeString()</h4>
-    @if (Model.FileStream != null) {
-        <img src="../../global/img/blog/blog-post-3.jpg" class="post-img img-responsive" alt="">
+    @if (Model.FileName != null) {
+      <img src="https://s3.amazonaws.com/aron1075.project/@Model.FileName" class="img-responsive" alt="">
     }
     <div class="post-content">
         <p>@Model.Content</p>
@@ -24,5 +24,6 @@
         }
     </ol>
 
-        @Html.ActionLink("Add Comment", "AddComment", new { aPostId = Model.PostId }, new { @class = "btn btn-primary" })
+    @Html.Partial("AddComment", new CommentViewModel())
+
 </div>

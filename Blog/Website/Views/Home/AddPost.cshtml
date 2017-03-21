@@ -7,14 +7,11 @@
 <body class="account-bg">
     <div class="account-wrapper">
         <div class="account-body">
-            @using (Html.BeginForm("AddPost", "Home", new { returnUrl = ViewBag.ReturnUrl, @class = "col-md-12 center-block" })) {
+            <form action="" method="post" enctype = "multipart/form-data" returnUrl = ViewBag.ReturnUrl class = "col-md-12 center-block">
                 <div class="post-main">
-
-                    @*<div class="form-group">
-                        <label for="file">Upload Image:</label>
-                        <input type="file" name="file" id="file" style="width: 100%;" />
-                    </div>*@
-
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Image, new { type = "file" })
+                    </div>
                     <div class="form-group">
                         <h3 class="post-title">@Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = "Title" })</h3>
                     </div>
@@ -28,8 +25,8 @@
                 <div class="form-action">
                     <button class="btn btn-primary btn-block btn-lg" type="submit">Add Post</button>
                 </div>
-            }
-            </div>
+            </form>
         </div>
+    </div>
 </body>
 

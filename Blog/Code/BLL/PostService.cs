@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 
 namespace Code {
 
@@ -14,9 +15,9 @@ public class PostService : IPostService {
         mAwsService = aAwsService;
     }
 
-    public Post AddPost(Post aPost, Stream aFileStream = null) {
-        if (aFileStream != null) {
-            aPost.PhotoAwsKey = mAwsService.UploadFile(aFileStream);
+    public Post AddPost(Post aPost, HttpPostedFileBase aFile = null) {
+        if (aFile != null) {
+            aPost.FileKey = mAwsService.UploadFile(aFile);
         }
 
         var post = mUnitOfWork.Post.Add(aPost);

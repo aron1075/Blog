@@ -1,22 +1,15 @@
 ﻿@model Blog.CommentViewModel
 
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<body class="account-bg">
-    <div class="account-wrapper">
-        <div class="account-body">
-            @using (Html.BeginForm("AddComment", "Home", new { returnUrl = ViewBag.ReturnUrl, @class = "col-md-12 center-block" })) {
-                <div class="form-group">
-                    <h3 class="post-title">@Html.TextAreaFor(m => m.Content, new { @class = "form-control", @placeholder = "Add a comment" })</h3>
-                </div>
-                @Html.ValidationSummary(false, string.Empty)
-                <div class="form-action">
-                    <button class="btn btn-primary btn-block btn-lg" type="submit">Add Comment</button>
-                </div>
-            }
+<div>
+    @using (Html.BeginForm("AddComment", "Home", new { returnUrl = ViewBag.ReturnUrl, @class = "col-md-12 center-block" })) {
+        <div class="form-group">
+            <h3 class="post-title">@Html.TextAreaFor(m => m.Content, new { @class = "form-control", @placeholder = "Add a comment" })</h3>
         </div>
-    </div>
-</body>
+        @Html.ValidationSummary(false, string.Empty)
+        <div class="form-action">
+            <button class="btn btn-primary btn-block btn-lg" type="submit">Add Comment</button>
+        </div>
+    }
+</div>
+    
 
